@@ -86,5 +86,25 @@ describe('Testes no endpoint de registro de usuário', () => {
     });
   });
 
+  it('Cenário em que todos os campos estão vazios', () => {
+
+    // Campos vazios
+    const newUser = {
+      "fullName": "",
+      "email": "",
+      "password": ""
+    };
+  
+    // Realizando a requisição
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('apiRegisterUrl'), 
+      body: newUser, 
+      failOnStatusCode: false,
+    }).then((response) => {
+      expect(response.status).to.eq(400);
+      expect(response.body.erro).to.equal("Nenhum campo foi preenchido!.");
+    });
+  });
 
 });

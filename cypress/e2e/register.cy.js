@@ -21,7 +21,7 @@ describe('Testes no endpoint de registro de usuário', () => {
   //   });
   // });
 
-  it.only('Cenário em que fullName está vazio', () => {
+  it('Cenário em que fullName está vazio', () => {
 
     // Campos vazios
     const newUser = {
@@ -43,7 +43,7 @@ describe('Testes no endpoint de registro de usuário', () => {
   });
   
 
-  it.only('Cenário em que email está vazio', () => {
+  it('Cenário em que email está vazio', () => {
 
     // Campos vazios
     const newUser = {
@@ -65,7 +65,7 @@ describe('Testes no endpoint de registro de usuário', () => {
   });
 
 
-  it.only('Cenário em que password está vazio', () => {
+  it('Cenário em que password está vazio', () => {
 
     // Campos vazios
     const newUser = {

@@ -174,4 +174,43 @@ describe('Testes no endpoint de registro de usuário', () => {
     });
   });
 
+  it('Cenário em que o email já está cadastrado', () => {
+
+    // Campos vazios
+    const newUser = {
+      "fullName": "Anderson Teste",
+      "email": "teste@gmail.com",
+      "password": "asasasassaa"
+    };
+  
+    // Realizando a requisição
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('apiRegisterUrl'), 
+      body: newUser, 
+      failOnStatusCode: false,
+    }).then((response) => {
+      expect(response.status).to.eq(400);
+      expect(response.body.erro).to.equal("E-mail já cadastrado.");
+    });
+  });
+
+  it('Cenário de todos os campos foram preenchidos corretamente', () => {
+    const newUser = {
+      "fullName": "Anderson Teste Sucess",
+      "email": "testevasc@gmail.com",
+      "password": "sucesso2025"
+    };
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('apiRegisterUrl'), 
+      body: newUser, 
+      failOnStatusCode: false,
+    }).then((response) => {
+      expect(response.status).to.eq(201);
+      expect(response.body.erro).to.equal("Usuário cadastrado com sucesso!");
+    });
+    
+  });
+
 });
